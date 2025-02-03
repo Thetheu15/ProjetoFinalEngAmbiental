@@ -1,8 +1,17 @@
 # Entregáveis 
 
+## Geral
+- [X] Implementar uso de Audio em telas ou elementos específicos
+- [X] Implementar adição de imagens em telas
+
+## Organização do Código
+- [X] Criar organização de pastas para separação das classes importantes
+- [X] Implementar estrutura dos módulos importantes para a adicão de elementos ao jogo
+- [X] Implementar estrutura das telas do jogo
+
 ## Tela Inicial
 - [] Definir e implementar a imagem de fundo.
-- [] Implementar a interação com os botão de iniciar o jogo
+- [X] Implementar a interação com os botão de iniciar o jogo
 - [] Implementar a lógica de passar a tela para o mapa mundi, ao interagir para começar o jogo.
 
 ## Mapa Mundi
