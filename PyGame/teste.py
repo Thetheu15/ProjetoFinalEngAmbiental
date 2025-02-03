@@ -1,19 +1,29 @@
 import pygame
 from gameMainScreens.TitleScreen import TitleScreen
+from gameMainScreens.MainMapScreen import MainMapScreen
+import time
 
 # Inicializa o Pygame
 pygame.init()
 
-game_screen = TitleScreen(500, 500, (255, 255, 255))
+mapScreen   = MainMapScreen()
+titleScreen = TitleScreen()
+
+is_title = True
 
 running = True
 while running:
-    game_screen.draw()
+    if is_title:
+        titleScreen.draw()
+    else:
+        mapScreen.draw()
+        map = True
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        game_screen.handle_event(event)
+        if is_title:
+            is_title = titleScreen.handle_event(event)
     
     pygame.display.flip()
 

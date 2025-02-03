@@ -1,6 +1,6 @@
 from imports import *
-from Classes.Button import Button
-from Classes.Screen import RootScreen
+from Elements.Button import Button
+from Elements.Screen import RootScreen
 
 # Inicializa o Pygame
 pygame.init()

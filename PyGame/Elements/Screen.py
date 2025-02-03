@@ -1,7 +1,7 @@
 from imports import pygame
 
 class RootScreen:
-    def __init__(self, width, height, background_color):
+    def __init__(self, width=500, height=500, background_color=(255,255,255)):
         self.width            = width
         self.height           = height
         self.background_color = background_color
