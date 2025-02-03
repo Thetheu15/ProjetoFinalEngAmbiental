@@ -1,4 +1,4 @@
-from imports import pygame
+import pygame
 
 class Image:
     def __init__(self, image_path, position):

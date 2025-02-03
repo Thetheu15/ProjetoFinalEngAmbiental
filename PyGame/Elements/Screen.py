@@ -1,4 +1,4 @@
-from imports import pygame
+import pygame
 
 class RootScreen:
     def __init__(self, width=500, height=500, background_color=(255,255,255)):

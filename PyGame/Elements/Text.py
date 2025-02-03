@@ -1,4 +1,4 @@
-from imports import pygame
+import pygame
 
 class Text:
     def __init__(self, position, text, font_size=36, color=(0, 0, 0)):
