@@ -7,7 +7,7 @@ import time
 pygame.init()
 
 mapScreen   = MainMapScreen()
-titleScreen = TitleScreen()
+titleScreen = TitleScreen(1024,720)
 
 is_title = True
 
