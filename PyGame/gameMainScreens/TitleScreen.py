@@ -9,15 +9,21 @@ class TitleScreen:
         self.screen = RootScreen(width, height, background_color)
         self.button = Button((175, 225), 150, 50, "Clique Aqui")
         self.title  = Text((50,50), "Hello World")
-        self.image  = Image("Sprites/sprite1.png", (0,0))
         self.music  = Audio("Audios/music.mp3") 
+        self.image  = Image("Sprites/sprite1.png", 
+                            position=(0,0), 
+                            spriteRows=5, 
+                            spriteColumns=5,
+                            animationSlowness=10)
 
         self.music.play()
         
     
     def draw(self):
-        self.screen.draw_background()
-        self.image.draw(self.screen.screen, (0,0,500,500))
+        self.image.updateFrame(self.screen.screen) 
+
+        # self.screen.draw_background()
+        # self.image.draw(self.screen.screen)
         # self.button.draw(self.screen.screen)
         # self.title.draw(self.screen.screen)
 

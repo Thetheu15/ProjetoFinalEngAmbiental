@@ -6,6 +6,8 @@ import time
 # Inicializa o Pygame
 pygame.init()
 
+clock = pygame.time.Clock()
+
 mapScreen   = MainMapScreen()
 titleScreen = TitleScreen(1024,720)
 
@@ -13,6 +15,8 @@ is_title = True
 
 running = True
 while running:
+    dt = clock.tick(60)  
+    
     if is_title:
         titleScreen.draw()
     else:
