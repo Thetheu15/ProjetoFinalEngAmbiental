@@ -3,7 +3,7 @@
 ## Geral
 - [X] Implementar uso de Audio em telas ou elementos específicos
 - [X] Implementar adição de imagens em telas
-- [ ] Implementar animações com controle de velocidade
+- [X] Implementar animações com controle de velocidade
 
 ## Organização do Código
 - [X] Criar organização de pastas para separação das classes importantes
