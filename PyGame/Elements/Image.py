@@ -5,8 +5,6 @@ IMAGE_WIDTH  = 0
 
 class Image:
     def __init__(self, image_path, position, spriteRows = 0, spriteColumns = 0, animationSlowness = 0):
-        global IMAGE_HEIGHT, IMAGE_WIDTH
-
         self.image         = pygame.image.load(image_path).convert_alpha()
         self.rect          = self.image.get_rect(topleft=position)
         self.spriteRows    = spriteRows
