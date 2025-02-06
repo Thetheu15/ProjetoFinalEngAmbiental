@@ -1,6 +1,6 @@
 import pygame
 
-class RootScreen:
+class Screen:
     def __init__(self, width=500, height=500, background_color=(255,255,255)):
         self.width            = width
         self.height           = height

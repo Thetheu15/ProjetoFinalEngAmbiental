@@ -1,8 +1,8 @@
 import pygame
 
 class Button:
-    def __init__(self, initPoint, width, height, text, font_size=36, color=(0, 0, 255), hover_color=(0, 0, 180), text_color=(255, 255, 255)):
-        self.rect         = pygame.Rect(initPoint[0], initPoint[1], width, height)
+    def __init__(self, position, width, height, text, font_size=36, color=(0, 0, 255), hover_color=(0, 0, 180), text_color=(255, 255, 255)):
+        self.rect         = pygame.Rect(position[0], position[1], width, height)
         self.color        = color
         self.hover_color  = hover_color
         self.text         = text
