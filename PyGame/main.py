@@ -23,7 +23,6 @@ while running:
         titleScreen.draw()
     elif actualScreen == "mapScreen":
         mapScreen.draw()
-
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
