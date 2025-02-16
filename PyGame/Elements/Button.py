@@ -15,7 +15,7 @@ class Button:
         mouse_pos = pygame.mouse.get_pos()
         color     = self.hover_color if self.rect.collidepoint(mouse_pos) else self.color
         
-        pygame.draw.rect(screen, color, self.rect)
+        pygame.draw.rect(screen, color, self.rect, border_radius=50)
         screen.blit(self.text_surface, self.text_rect)
 
     def is_clicked(self, event):

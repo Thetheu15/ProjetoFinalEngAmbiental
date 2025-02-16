@@ -1,37 +1,25 @@
 import pygame
-from gameMainScreens.TitleScreen import TitleScreen
-from gameMainScreens.MainMapScreen import MapScreen
-import time
+from gameMainScreens.BossScreen import BossScreen
 
-# Inicializa o Pygame
 pygame.init()
 clock = pygame.time.Clock()
 
-mapScreen   = MapScreen(width  = 600,
-                        height = 600)
+bossScreen  = BossScreen(width = 1600,
+                        height = 900)
 
-titleScreen = TitleScreen(width = 720,
-                          height= 600)
-
-actualScreen = "titleScreen"
+actualScreen = "bossScreen"
 
 running = True
 while running:
     dt = clock.tick(60)  
-    
-    if actualScreen == "titleScreen":
-        titleScreen.draw()
-    elif actualScreen == "mapScreen":
-        mapScreen.draw()
-
+    bossScreen.draw()
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if actualScreen == "titleScreen":
-            actualScreen = titleScreen.handleEvent(event)
-        elif actualScreen == "mapScreen":
-            actualScreen = mapScreen.handleEvent(event)
+        if actualScreen == "bossScreen":
+            bossScreen.handleEvent(event)
+
     
     pygame.display.flip()
 
