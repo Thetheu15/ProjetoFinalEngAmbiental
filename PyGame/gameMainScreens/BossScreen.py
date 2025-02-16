@@ -3,6 +3,7 @@ from Elements.Screen import Screen
 from Elements.Text   import Text
 from Elements.Audio  import Audio
 from Elements.Image  import Image
+from Elements.HealthBar import HealthBar
 import pygame
 
 class BossScreen:
@@ -18,6 +19,9 @@ class BossScreen:
                                 animationSlowness = 6)
         self.boss.scale((700,700))
 
+        self.bossHealthBar   = HealthBar(self.mainScreen.screen, (1065,25), 300)
+        self.playerHealthBar = HealthBar(self.mainScreen.screen, (300,175), 100)
+
         self.player    = Image('Images/playerBack.png', (200, 225))
         self.player.scale((300,300))
 
@@ -27,10 +31,10 @@ class BossScreen:
                                 spriteColumns     = 4,
                                 animationSlowness = 12)
         
-        self.option1    = Button((500,600), 300, 150, "text")
-        self.option2    = Button((750,700), 300, 50, "text")
-        self.option3    = Button((450,800), 300, 50, "text")
-        self.option4    = Button((750,800), 300, 50, "text")
+        self.option1    = Button((0,600), 800, 150, "text")
+        self.option2    = Button((0,750), 800, 150, "text")
+        self.option3    = Button((800,600), 800, 150, "text")
+        self.option4    = Button((800,750), 800, 150, "text")
 
         self.hitAnim_trigger = False 
         self.countFrame = 0
@@ -38,7 +42,7 @@ class BossScreen:
 
     def draw(self):
         self.mainScreen.draw_background()
-        pygame.draw.line(self.mainScreen.screen, (255, 255, 255), (0, 600), (1600, 600), 5)
+        pygame.draw.line(self.mainScreen.screen, (0, 255, 0), (0, 600), (1600, 600), 1)
         pygame.draw.line(self.mainScreen.screen, (255, 255, 255), (800, 0), (800, 900), 1)
         pygame.draw.line(self.mainScreen.screen, (255, 255, 255), (0, 450), (1600, 450), 1)
         pygame.draw.ellipse(self.mainScreen.screen, (0, 0, 0), (1010, 310, 400, 150))
@@ -48,9 +52,12 @@ class BossScreen:
         self.player.draw(self.mainScreen.screen)
 
         self.option1.draw(self.mainScreen.screen)
-        # self.option2.draw(self.mainScreen.screen)
-        # self.option3.draw(self.mainScreen.screen)
-        # self.option4.draw(self.mainScreen.screen)
+        self.option2.draw(self.mainScreen.screen)
+        self.option3.draw(self.mainScreen.screen)
+        self.option4.draw(self.mainScreen.screen)
+
+        self.bossHealthBar.draw()
+        self.playerHealthBar.draw()
 
         if self.hitAnim_trigger and self.countFrame <= self.hitAnim.totalNumFrames: 
             self.hitAnim.updateFrame(self.mainScreen.screen) 
@@ -63,4 +70,5 @@ class BossScreen:
     def handleEvent(self, event):
         if self.option1.is_clicked(event):
             self.hitAnim_trigger = True
+            self.playerHealthBar.doDamage()
         
