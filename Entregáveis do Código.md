@@ -13,7 +13,7 @@
 ## Tela Inicial
 - [ ] Definir e implementar a imagem de fundo.
 - [X] Implementar a interação com os botão de iniciar o jogo
-- [ ] Implementar a lógica de passar a tela para o mapa mundi, ao interagir para começar o jogo.
+- [X] Implementar a lógica de passar a tela para o mapa mundi, ao interagir para começar o jogo.
 
 ## Mapa Mundi
 - [ ] Definir e implementar a arte do mapa, escolher se vai ser uma grande imagem ou tiles separadas.
