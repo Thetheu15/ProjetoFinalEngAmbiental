@@ -1,4 +1,5 @@
 import pygame
+import time
 
 # Inicializa o Pygame
 pygame.init()
@@ -6,64 +7,35 @@ pygame.init()
 # Configuração da tela
 largura, altura = 500, 300
 tela = pygame.display.set_mode((largura, altura))
-pygame.display.set_caption("Barra de Vida no Pygame")
+pygame.display.set_caption("Fade Out de Imagem")
 
-# Definições da barra de vida
-vida_max = 300
-vida_atual = vida_max
-barra_pos = (50, 100, 300, 30)  # (x, y, largura, altura)
-cor_fundo = (50, 50, 50)  # Cinza escuro (fundo da barra)
-cor_vida = (0, 255, 0)  # Verde (vida cheia)
-cor_dano = (255, 0, 0)  # Vermelho (para efeito de dano)
+# Carregar imagem e converter para suportar transparência
+imagem = pygame.image.load("Images/playerBack.png").convert_alpha()
 
-healthDownCounter = 60
-postDamageCounter = 60
-countDamageTaken = 0
-damageTaken = False
-clock = pygame.time.Clock()
-# Loop principal
+# Posição da imagem
+pos_x, pos_y = 100, 50
+
+# Definir opacidade inicial
+alpha = 255
+imagem.set_alpha(alpha)
+
 rodando = True
 while rodando:
-    dt = clock.tick(60)  
-    tela.fill((255, 255, 255))  # Fundo da tela
+    tela.fill((30, 30, 30))  # Fundo escuro
 
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             rodando = False
 
-        # Reduz a vida ao pressionar espaço
-        if evento.type == pygame.KEYDOWN:
-            if evento.key == pygame.K_SPACE:
-                damageTaken = True
-                countDamageTaken += 1
-                # vida_atual -= 10  # Simula dano
-                vida_atual = max(0, vida_atual)
-    if healthDownCounter > 0 and damageTaken == True:
-        vida_atual -= 1.6667
+    # Reduz a opacidade aos poucos
+    if alpha > 0:
+        alpha -= 2  # Ajuste esse valor para mudar a velocidade do fade
+        imagem.set_alpha(alpha)
 
-        pygame.draw.rect(tela, cor_fundo, barra_pos)
+    # Desenha a imagem na tela
+    tela.blit(imagem, (pos_x, pos_y))
 
-        pygame.draw.rect(tela, cor_vida, (barra_pos[0], barra_pos[1], (vida_atual+60 if vida_atual < vida_max-100*countDamageTaken+40 else vida_max-100*(countDamageTaken-1)), barra_pos[3]))
-        pygame.draw.rect(tela, cor_dano, (barra_pos[0], barra_pos[1], vida_atual, barra_pos[3]))
-        healthDownCounter -= 1
-
-    elif healthDownCounter == 0:
-        pygame.draw.rect(tela, cor_fundo, barra_pos)
-
-        pygame.draw.rect(tela, cor_vida, (barra_pos[0], barra_pos[1], vida_atual+postDamageCounter, barra_pos[3]))
-        pygame.draw.rect(tela, cor_dano, (barra_pos[0], barra_pos[1], vida_atual, barra_pos[3]))
-        postDamageCounter -= 1
-        if (postDamageCounter == 0):
-            healthDownCounter = 60
-            postDamageCounter = 60
-            damageTaken = False
-
-    elif damageTaken == False:
-        vida_atual = (vida_atual / vida_max) * barra_pos[2] 
-
-        pygame.draw.rect(tela, cor_fundo, barra_pos)
-        pygame.draw.rect(tela, cor_vida, (barra_pos[0], barra_pos[1], vida_atual, barra_pos[3]))
-
-    pygame.display.flip()  # Atualiza a tela
+    pygame.display.flip()
+    time.sleep(0.02)  # Pequeno delay para suavizar o efeito
 
 pygame.quit()

@@ -22,6 +22,8 @@ class Image:
         self.Height = self.image.get_height()
         self.widht  = self.image.get_width()
 
+        self.alpha = 255
+
     def scale(self, scale):
         self.image = pygame.transform.scale(self.image, scale)
         self.rect  = self.image.get_rect(topleft=self.position)
@@ -43,24 +45,52 @@ class Image:
         screen.blit(self.image, self.rect, (self.animationColumns*self.widht//self.spriteColumns, 
                                             self.animationRows*self.Height//self.spriteRows, 
                                             self.widht//self.spriteColumns, self.Height//self.spriteRows))
+        
+    def fadeImageAnimation(self, screen, timeToFade, is_animation=False):
+        self.image.set_alpha(self.alpha)
+        
+        if (is_animation == True): self.showFrame(screen)
+        else:                      self.draw(screen)
+        
+        self.alpha -= 2
     
-    def updateFrame(self, screen):
+    def doAnimation(self, screen):
+        
         if self.framesFrozen == 0:
             self.framesFrozen = self.animationSlowness
+            self.showFrame(screen)
 
             if self.animationRows < self.spriteRows:
                 if self.animationColumns < self.spriteColumns-1:
                     self.showFrame(screen)
                     self.animationColumns += 1
+             
                 else: 
                     self.animationColumns = 0
-                    self.animationRows   += 1
+                    self.animationRows   += 1 
                     self.showFrame(screen)
             else:
                 self.animationColumns = 0
                 self.animationRows    = 0  
                 self.showFrame(screen)
+
         else: 
-            self.showFrame(screen)
-            self.framesFrozen -= 1
+            if self.animationRows == self.spriteRows and self.animationColumns == 0: 
+                self.animationRows    -= 1
+                self.animationColumns += 1
+                
+                self.showFrame(screen)
+
+                self.animationRows    = 0
+                self.animationColumns = 0
+
+                self.framesFrozen -= 1
+                return 
+
+            else:
+                self.showFrame(screen)
+                self.framesFrozen -= 1
+
+            
+        
         

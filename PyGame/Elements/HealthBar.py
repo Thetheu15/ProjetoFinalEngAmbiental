@@ -1,7 +1,7 @@
 import pygame
 
 class HealthBar:
-    def __init__(self, screen, position, maxHealth, height=30, hitDamage=100, backGroundColor=(50, 50, 50), healthBarColor=(0, 255, 0), damageColor=(255, 0, 0)):
+    def __init__(self, screen, position, maxHealth, height=15, hitDamage=100, backGroundColor=(50, 50, 50), healthBarColor=(0, 255, 0), damageColor=(255, 0, 0)):
         self.screen = screen
         self.position = position
         self.maxHealth = maxHealth
@@ -29,26 +29,26 @@ class HealthBar:
             self.postDamageCounter = damage*0.4
             self.currentHealth -= damage/60
 
-            pygame.draw.rect(self.screen, self.backGroundColor, (self.position[0], self.position[1], self.maxHealth, self.height))
+            pygame.draw.rect(self.screen, self.backGroundColor, (self.position[0], self.position[1], self.maxHealth, self.height), border_radius=20)
 
             pygame.draw.rect(self.screen, self.healthColor, (self.position[0], self.position[1], 
                                                             (self.currentHealth + damage*0.4
                                                              if self.currentHealth < self.maxHealth - damage*self.countDamageTaken + damage*0.6 
                                                              else self.maxHealth - damage*(self.countDamageTaken - 1)), 
-                                                             self.height))
+                                                             self.height), border_radius=20)
             
-            pygame.draw.rect(self.screen, self.damageColor, (self.position[0], self.position[1], self.currentHealth, self.height))
+            pygame.draw.rect(self.screen, self.damageColor, (self.position[0], self.position[1], self.currentHealth, self.height), border_radius=20)
             
             self.healthDownCounter -= 1
 
         elif self.healthDownCounter == 0:
-            pygame.draw.rect(self.screen,self.backGroundColor, (self.position[0], self.position[1], self.maxHealth, self.height))
+            pygame.draw.rect(self.screen,self.backGroundColor, (self.position[0], self.position[1], self.maxHealth, self.height), border_radius=20)
 
             pygame.draw.rect(self.screen, self.healthColor, (self.position[0], self.position[1],
                                                              self.currentHealth + self.postDamageCounter, 
-                                                             self.height))
+                                                             self.height), border_radius=20)
 
-            pygame.draw.rect(self.screen,  self.damageColor, (self.position[0], self.position[1], self.currentHealth, self.height))
+            pygame.draw.rect(self.screen,  self.damageColor, (self.position[0], self.position[1], self.currentHealth, self.height), border_radius=20)
 
             self.postDamageCounter -= 1
 
@@ -58,7 +58,7 @@ class HealthBar:
                 self.damageTaken = False
 
         elif self.damageTaken == False:
-            pygame.draw.rect(self.screen, self.backGroundColor, (self.position[0], self.position[1], self.maxHealth, self.height))
-            pygame.draw.rect(self.screen, self.healthColor, (self.position[0], self.position[1], self.currentHealth, self.height))
+            pygame.draw.rect(self.screen, self.backGroundColor, (self.position[0], self.position[1], self.maxHealth, self.height), border_radius=20)
+            pygame.draw.rect(self.screen, self.healthColor, (self.position[0], self.position[1], self.currentHealth, self.height), border_radius=20)
 
     

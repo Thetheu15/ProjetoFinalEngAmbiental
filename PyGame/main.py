@@ -20,7 +20,6 @@ while running:
         if actualScreen == "bossScreen":
             bossScreen.handleEvent(event)
 
-    
     pygame.display.flip()
 
 pygame.quit()
